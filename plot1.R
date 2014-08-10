@@ -1,6 +1,6 @@
 ## Creation of graphic 1
 # Loading the data from the CSV file using read.csv2 to handle ';' separator, assuming the file is 2 directories above the repo directory
-hpc<-read.csv2("../../household_power_consumption.txt",na.strings = "?",stringsAsFactors=F,dec = ".")
+hpc<-read.csv2("../../household_power_consumption.txt",na.strings = "?",stringsAsFactors=F,dec = ".",fill=TRUE)
 #Extracts the subset between the dates "2007-02-01" and "2007-02-02"
 j<-1
 date1<-as.Date("2007-02-01","%Y-%m-%d")
