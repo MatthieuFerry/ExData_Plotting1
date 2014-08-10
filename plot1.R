@@ -5,11 +5,13 @@ hpc<-read.csv2("../../household_power_consumption.txt",na.strings = "?",stringsA
 j<-1
 date1<-as.Date("2007-02-01","%Y-%m-%d")
 date2<-as.Date("2007-02-02","%Y-%m-%d")
-for (i in 1:nrow(hpc)) {
-        hpc$Date[i]<-as.Date(hpc$Date[i],"%d/%m/%Y")
-        if (hpc$Date[i]>=date1 && hpc$Date[i]<=date2) {
-                hpc_subset[j]<-hpc[i]
-                hpc_subset$Time[j]<-strptime(hpc_subset$Time[j],"%H:%M:%S")
+nrows<-nrow(hpc)
+hpc_subset<-matrix(nrows,9)
+for (i in 1:nrows) {
+        date<-as.Date(hpc$Date[i],"%d/%m/%Y")
+        if (date>=date1 && date<=date2) {
+                time<-strptime(hpc$Time[i],"%H:%M:%S")
+                hpc_subset[j,]<-c(date,time,hpc[i,])
                 j<-j+1
         }
 }
